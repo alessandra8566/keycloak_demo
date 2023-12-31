@@ -28,7 +28,7 @@ const Login = () => {
             className="w-full"
             onClick={() =>
               keycloak.login({
-                redirectUri: `${window.location.href}/personal`,
+                redirectUri: `${window.location.href}personal`,
               })
             }
           >
