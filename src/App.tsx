@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
-import keycloak from "./utils/keycloak";
+import Keycloak from "keycloak-js";
+import { useKeyloakDomain } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,13 @@ const tokenLogger = (tokens: unknown) => {
 };
 
 function App() {
+  const keycloakDomain = useKeyloakDomain(state => state.getDomain())
+  const keycloak = new Keycloak({
+    url: keycloakDomain,
+    realm: "demo",
+    clientId: "demo",
+  });
+
   return (
     <ReactKeycloakProvider
       authClient={keycloak}
