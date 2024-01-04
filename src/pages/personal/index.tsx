@@ -7,11 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useKeyloakDomain } from "@/store";
 
 const Personal = () => {
   const { keycloak } = useKeycloak();
+  const keycloakServerDomain = useKeyloakDomain((state) => state.getDomain());
 
-  console.log(`${window.location.protocol}://${window.location.host}`)
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-slate-50">
@@ -19,7 +20,7 @@ const Personal = () => {
         <CardHeader>
           <CardTitle>Hi, {keycloak.tokenParsed?.preferred_username}</CardTitle>
           <CardDescription>final demo</CardDescription>
-          {keycloak.tokenParsed && <CardDescription>domain: {window.location.href}</CardDescription>}
+          {keycloak.tokenParsed && <CardDescription>API Server: {keycloakServerDomain}</CardDescription>}
         </CardHeader>
         <CardFooter className="flex justify-between">
           <Button

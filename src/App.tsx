@@ -29,7 +29,7 @@ const tokenLogger = (tokens: unknown) => {
 };
 
 function App() {
-  const keycloakDomain = useKeyloakDomain(state => state.getDomain())
+  const keycloakDomain = useKeyloakDomain((state) => state.getDomain());
   const keycloak = new Keycloak({
     url: keycloakDomain,
     realm: "demo",
